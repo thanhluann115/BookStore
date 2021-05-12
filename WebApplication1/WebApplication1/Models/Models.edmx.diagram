@@ -12,6 +12,15 @@
         <AssociationConnector Association="CT25Team15Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CT25Team15Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="CT25Team15Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CT25Team15Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CT25Team15Model.CHITIETHOADON" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CT25Team15Model.DONHANG" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CT25Team15Model.GIOHANG" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CT25Team15Model.HOADON" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CT25Team15Model.KHACHHANG" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CT25Team15Model.SANPHAM" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CT25Team15Model.TAIKHOAN" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CT25Team15Model.DANHMUCSANPHAM" Width="1.5" PointX="9.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
