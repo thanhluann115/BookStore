@@ -15,7 +15,7 @@ namespace WebApplication1.Models
     public partial class HOADON
     {
         public int MaHD { get; set; }
-        public byte[] NgayLapHD { get; set; }
+        public Nullable<System.DateTime> NgayLapHD { get; set; }
         public Nullable<int> MaKH { get; set; }
         public string TenKH { get; set; }
         public string TongTien { get; set; }
