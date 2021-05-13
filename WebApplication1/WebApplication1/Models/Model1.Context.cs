@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication2.Models
+namespace WebApplication1.Models
 {
     using System;
     using System.Data.Entity;

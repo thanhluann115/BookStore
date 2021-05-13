@@ -17,10 +17,10 @@ namespace WebApplication1.Models
         public string MATK { get; set; }
         public string SDT { get; set; }
         public string EMAIL { get; set; }
-        public string MATKAU { get; set; }
+        public string MATKHAU { get; set; }
         public string TENTK { get; set; }
-        public Nullable<System.DateTime> NGAYTAONGUOIDUNG { get; set; }
-        public Nullable<System.DateTime> NGAYCAPNHATNGUOIDUNG { get; set; }
+        public System.DateTime NGAYTAONGUOIDUNG { get; set; }
+        public System.DateTime NGAYCAPNHATNGUOIDUNG { get; set; }
         public string GHINHOCHUNGTHUCVANHOTAIKHOAN { get; set; }
     }
 }
