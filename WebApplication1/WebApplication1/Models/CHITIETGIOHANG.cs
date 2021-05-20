@@ -12,18 +12,13 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TAIKHOAN
+    public partial class CHITIETGIOHANG
     {
-        public string MATK { get; set; }
-        public string MAKH { get; set; }
-        public string SDT { get; set; }
-        public string EMAIL { get; set; }
-        public string MATKHAU { get; set; }
-        public string TENTK { get; set; }
-        public System.DateTime NGAYTAONGUOIDUNG { get; set; }
-        public System.DateTime NGAYCAPNHATNGUOIDUNG { get; set; }
-        public string GHINHOCHUNGTHUCVANHOTAIKHOAN { get; set; }
+        public string MaGH { get; set; }
+        public int MaSP { get; set; }
+        public string SoLuong { get; set; }
     
-        public virtual KHACHHANG KHACHHANG { get; set; }
+        public virtual GIOHANG GIOHANG { get; set; }
+        public virtual SANPHAM SANPHAM { get; set; }
     }
 }

@@ -17,26 +17,22 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHACHHANG()
         {
+            this.DONHANGs = new HashSet<DONHANG>();
             this.HOADONs = new HashSet<HOADON>();
-            this.TAIKHOANs = new HashSet<TAIKHOAN>();
         }
     
         public string MAKH { get; set; }
-        public string MADH { get; set; }
         public string TENKH { get; set; }
         public string DCHI { get; set; }
         public string SDT { get; set; }
-        public Nullable<System.DateTime> NGAYMUAHANG { get; set; }
         public string GIOITINH { get; set; }
         public string EMAIL { get; set; }
         public Nullable<System.DateTime> NGAYNHAPKHACHHANG { get; set; }
-        public string GHICHUDATHANG { get; set; }
         public Nullable<System.DateTime> NGAYCAPNHATLAIKHACHHANG { get; set; }
     
-        public virtual DONHANG DONHANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DONHANG> DONHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HOADON> HOADONs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
     }
 }

@@ -14,16 +14,10 @@ namespace WebApplication1.Models
     
     public partial class DONHANG
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DONHANG()
-        {
-            this.KHACHHANGs = new HashSet<KHACHHANG>();
-            this.SANPHAMs = new HashSet<SANPHAM>();
-        }
-    
         public string MADH { get; set; }
         public string MAGH { get; set; }
         public Nullable<System.DateTime> THOIGIAN { get; set; }
+        public string MAKH { get; set; }
         public string TENKH { get; set; }
         public string SDTKHACHHANG { get; set; }
         public string SOTIEN { get; set; }
@@ -31,9 +25,6 @@ namespace WebApplication1.Models
         public Nullable<System.DateTime> NGAYMUAHANG { get; set; }
     
         public virtual GIOHANG GIOHANG { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SANPHAM> SANPHAMs { get; set; }
+        public virtual KHACHHANG KHACHHANG { get; set; }
     }
 }

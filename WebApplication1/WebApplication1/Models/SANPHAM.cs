@@ -17,8 +17,8 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SANPHAM()
         {
+            this.CHITIETGIOHANGs = new HashSet<CHITIETGIOHANG>();
             this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
-            this.GIOHANGs = new HashSet<GIOHANG>();
             this.DANHMUCSANPHAMs = new HashSet<DANHMUCSANPHAM>();
         }
     
@@ -28,16 +28,14 @@ namespace WebApplication1.Models
         public string NamSX { get; set; }
         public string NhaSX { get; set; }
         public string LoaiSP { get; set; }
-        public Nullable<decimal> Gia { get; set; }
-        public byte[] Created_at { get; set; }
+        public Nullable<int> Gia { get; set; }
         public string Noidung { get; set; }
-        public string MADH { get; set; }
+        public byte[] NgayThem { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
-        public virtual DONHANG DONHANG { get; set; }
+        public virtual ICollection<CHITIETGIOHANG> CHITIETGIOHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GIOHANG> GIOHANGs { get; set; }
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DANHMUCSANPHAM> DANHMUCSANPHAMs { get; set; }
     }

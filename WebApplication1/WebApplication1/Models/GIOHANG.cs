@@ -18,16 +18,16 @@ namespace WebApplication1.Models
         public GIOHANG()
         {
             this.DONHANGs = new HashSet<DONHANG>();
+            this.CHITIETGIOHANGs = new HashSet<CHITIETGIOHANG>();
         }
     
         public string MAGH { get; set; }
-        public string TENGIOHANG { get; set; }
-        public int MaSP { get; set; }
         public string SOLUONG { get; set; }
-        public string GIASANPHAM { get; set; }
+        public string GhiChuDatHang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONHANG> DONHANGs { get; set; }
-        public virtual SANPHAM SANPHAM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETGIOHANG> CHITIETGIOHANGs { get; set; }
     }
 }
