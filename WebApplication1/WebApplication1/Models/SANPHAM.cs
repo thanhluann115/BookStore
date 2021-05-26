@@ -38,5 +38,10 @@ namespace WebApplication1.Models
         public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DANHMUCSANPHAM> DANHMUCSANPHAMs { get; set; }
+
+        internal void SaveAs(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
