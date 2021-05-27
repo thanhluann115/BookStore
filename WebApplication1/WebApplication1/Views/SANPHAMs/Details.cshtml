@@ -4,79 +4,70 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="product-images">
+            <div class="product-main-img">
+                <img src="@Url.Action("Picture", new {Model.MaSP} )" alt="">
+            </div>
 
-<div>
-    <h4>SANPHAM</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenSP)
-        </dt>
+        
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenSP)
-        </dd>
+    <div class="col-sm-6">
+        <div class="product-inner">
+            <h2 class="product-name">@Model.TenSP</h2>
+            <div class="product-inner-price">
+              <p>@Model.Gia</p>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TacGia)
-        </dt>
+            <form action="" class="cart">
+                <div class="quantity">
+                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
+                </div>
+                <button class="add_to_cart_button" type="submit">Add to cart</button>
+            </form>
 
-        <dd>
-            @Html.DisplayFor(model => model.TacGia)
-        </dd>
+            <div class="product-inner-category">
+                <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NamSX)
-        </dt>
+            <div role="tabpanel">
+                <ul class="product-tab" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+                        <h2>Mô Tả</h2>
+                       <span>
+                           @MvcHtmlString.Create(Model.Noidung)
+                       </span>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="profile">
+                        <h2>Reviews</h2>
+                        <div class="submit-review">
+                            <p><label for="name">Name</label> <input name="name" type="text"></p>
+                            <p><label for="email">Email</label> <input name="email" type="email"></p>
+                            <div class="rating-chooser">
+                                <p>Your rating</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.NamSX)
-        </dd>
+                                <div class="rating-wrap-post">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
+                            <p><input type="submit" value="Submit"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NhaSX)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NhaSX)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiSP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiSP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Noidung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Noidung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayThem)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayThem)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
