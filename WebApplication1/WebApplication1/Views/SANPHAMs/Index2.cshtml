@@ -1,8 +1,10 @@
-﻿@model IEnumerable<WebApplication1.Models.SANPHAM>
+﻿
+@model IEnumerable<WebApplication1.Models.SANPHAM>
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Home Page"; }
+
+
+
 
 <div class="site-branding-area">
     <div class="container">
@@ -14,8 +16,12 @@
             </div>
 
             <div class="col-sm-6">
+
+
+
+
                 <div class="shopping-item">
-                    <a href="cart.html">Giỏ Hàng - <span class="cart-amunt">100.000VND</span> <i class  ="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                    <a href="cart.html">Giỏ Hàng - <span class="cart-amunt">100.000VND</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
 
                 </div>
 
@@ -140,95 +146,25 @@
                 <div class="latest-product">
                     <h2 class="section-title">Sản Phẩm Mới Nhất</h2>
                     <div class="product-carousel">
-                        <div class="single-product">
-                            <div class="product-f-image">
-                                <img src="@Url.Content("~/img/product-1.jpg")" alt="">
-                                <div class="product-hover">
-                                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
-                                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
-                                </div>
-                            </div>
+                        @foreach (var sANPHAM in Model)
+                        {
+            <div class="single-product">
+                <div class="product-f-image">
+                    <a href="@Url.Action("Details", new { sANPHAM.MaSP})">
+                        <img src="@Url.Action("Picture","Products", new { sANPHAM.MaSP})" width="1950px" height="1300px" alt="Demo picture">
+                    </a>
+                    <div class="product-hover">
+                        <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
+                    </div>
+                </div>
 
-                            <h2><a href="single-product.html">Dark Nhân Tâm</a></h2>
+                <h2><a href="@Url.Action("Details",new { sANPHAM.MaSP})">@sANPHAM.TenSP</a></h2>
 
-                            <div class="product-carousel-price">
-                                <ins>53.000 VND</ins> <del>78.000 VND</del>
-                            </div>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-f-image">
-                                <img src="@Url.Content("~/img/product-2.jpg")" alt="">
-                                <div class="product-hover">
-                                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng</a>
-                                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
-                                </div>
-                            </div>
+                <div class="product-carousel-price">
+                    <p>@sANPHAM.Gia VNĐ</p>
+                </div>
+            </div>}
 
-                            <h2>Cha Giàu Cha Nghèo</h2>
-                            <div class="product-carousel-price">
-                                <ins>99.000 VND</ins> <del>100.000 VND</del>
-                            </div>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-f-image">
-                                <img src="@Url.Content("~/img/product-3.jpg")" alt="">
-                                <div class="product-hover">
-                                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng</a>
-                                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
-                                </div>
-                            </div>
-
-                            <h2>Tuổi Trẻ Đáng Giá Bao Nhiêu</h2>
-
-                            <div class="product-carousel-price">
-                                <ins>59.000 VND</ins> <del>88.000 VND</del>
-                            </div>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-f-image">
-                                <img src="@Url.Content("~/img/product-4.jpg")" alt="">
-                                <div class="product-hover">
-                                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
-                                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
-                                </div>
-                            </div>
-
-                            <h2><a href="single-product.html">Đời Ngắn Đừng Ngủ Dài</a></h2>
-
-                            <div class="product-carousel-price">
-                                <ins>30.000 VND</ins> <del>150.000 VND</del>
-                            </div>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-f-image">
-                                <img src="@Url.Content("~/img/product-5.jpg")" alt="">
-                                <div class="product-hover">
-                                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
-                                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
-                                </div>
-                            </div>
-
-                            <h2>Trên Đường Băng</h2>
-
-                            <div class="product-carousel-price">
-                                <ins>89.000 VND</ins> <del>135.000 VND</del>
-                            </div>
-                        </div>
-                        <div class="single-product">
-                            <div class="product-f-image">
-                                <img src="@Url.Content("~/img/product-6.png")" alt="">
-                                <div class="product-hover">
-                                    <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i>  Thêm Vào Giỏ Hàng</a>
-                                    <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i>  Xem Chi Tiết</a>
-                                </div>
-                            </div>
-
-                            <h2><a href="single-product.html">Sức Mạnh Của Thói Quen</a></h2>
-
-                            <div class="product-carousel-price">
-                                <ins>150.000 VND</ins>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
