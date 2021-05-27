@@ -126,32 +126,43 @@ namespace WebApplication1.Controllers
         }
 
         // GET: SANPHAMs/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SANPHAM sANPHAM = db.SANPHAMs.Find(id);
-            if (sANPHAM == null)
+            var model = db.SANPHAMs.Find(id);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sANPHAM);
+            return View(model);
         }
-
         // POST: SANPHAMs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SANPHAM sANPHAM = db.SANPHAMs.Find(id);
-            db.SANPHAMs.Remove(sANPHAM);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            using (var scope = new TransactionScope())
+            {
+                var model = db.SANPHAMs.Find(id);
+                db.SANPHAMs.Remove(model);
+                db.SaveChanges();
+
+
+
+                var path = Server.MapPath(PICTURE_PATH);
+                System.IO.File.Delete(path + model.MaSP);
+
+
+
+                scope.Complete();
+                return RedirectToAction("Index");
+            }
         }
         // SEARCH
-       
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
