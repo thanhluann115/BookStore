@@ -78,7 +78,13 @@
         </div>
     </div> <!-- End header area -->
 
+    <div class="single-sidebar">
+        <form action="@Url.Action("Search","SANPHAMs")" method="get">
+            <input type="search" name="Keyword" placeholder="Your search here" value="@ViewBag.Keyword">
+            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
 
+    </div>
     <main>
         @RenderBody()
     </main>

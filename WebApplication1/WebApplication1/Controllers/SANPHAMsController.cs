@@ -20,15 +20,24 @@ namespace WebApplication1.Controllers
         {
             return View(db.SANPHAMs.ToList());
         }
+        public ActionResult Search(string keyword)
+        {
+            var model = db.SANPHAMs.ToList();
+            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
+            ViewBag.Keyword = keyword; return View("Index2", model);
+        }
+
+        public ActionResult Index2()
+        {
+            var sANPHAM = db.SANPHAMs.ToList();
+            return View(sANPHAM);
+        }
 
         // GET: SANPHAMs/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int MaSP)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SANPHAM sANPHAM = db.SANPHAMs.Find(id);
+           
+            var sANPHAM = db.SANPHAMs.Find(MaSP);
             if (sANPHAM == null)
             {
                 return HttpNotFound();
@@ -141,7 +150,8 @@ namespace WebApplication1.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        // SEARCH
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)
