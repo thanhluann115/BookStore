@@ -29,20 +29,20 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index2()
         {
-            var sANPHAM = db.SANPHAMs.ToList();
-            return View(sANPHAM);
+            var model = db.SANPHAMs.ToList();
+            return View(model);
         }
 
         // GET: SANPHAMs/Details/5
         public ActionResult Details(int MaSP)
         {
            
-            var sANPHAM = db.SANPHAMs.Find(MaSP);
-            if (sANPHAM == null)
+            var model = db.SANPHAMs.Find(MaSP);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sANPHAM);
+            return View(model);
         }
 
         // GET: SANPHAMs/Create
@@ -60,7 +60,6 @@ namespace WebApplication1.Controllers
         {
             ValidateProduct(model);
             if (ModelState.IsValid)
-
             {
                 if (Picture != null)
                 {
@@ -84,55 +83,64 @@ namespace WebApplication1.Controllers
         }
         private const string PICTURE_PATH = "~/Upload/Products/";
         public ActionResult picture(int MaSP)
-        { // 
+        { 
             var path = Server.MapPath(PICTURE_PATH);
             return File(path + MaSP, "images");
         }
-        private void ValidateProduct(SANPHAM sANPHAM)
+        private void ValidateProduct(SANPHAM model)
         {
-            if (sANPHAM.Gia < 0)
+            if (model.Gia < 0)
                 ModelState.AddModelError("Price", "Price is less than Zero");
         }
 
         // GET: SANPHAMs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SANPHAM sANPHAM = db.SANPHAMs.Find(id);
-            if (sANPHAM == null)
+            
+            var model = db.SANPHAMs.Find(id);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sANPHAM);
+            return View(model);
         }
 
         // POST: SANPHAMs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ValidateInput(false)]
+        [HttpPost , ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSP,TenSP,TacGia,NamSX,NhaSX,LoaiSP,Gia,Noidung,NgayThem")] SANPHAM sANPHAM)
+        public ActionResult Edit( SANPHAM model, HttpPostedFileBase Picture)
         {
+            ValidateProduct(model);
             if (ModelState.IsValid)
             {
-                db.Entry(sANPHAM).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if(Picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        Picture.SaveAs(path + model.MaSP);
+                    }    
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }      
             }
-            return View(sANPHAM);
+            return View(model);
         }
 
         // GET: SANPHAMs/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int MaSP)
         {
-            if (id == null)
+            if (MaSP == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = db.SANPHAMs.Find(id);
+            var model = db.SANPHAMs.Find(MaSP);
             if (model == null)
             {
                 return HttpNotFound();
@@ -142,20 +150,16 @@ namespace WebApplication1.Controllers
         // POST: SANPHAMs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int MaSP)
         {
             using (var scope = new TransactionScope())
             {
-                var model = db.SANPHAMs.Find(id);
+                var model = db.SANPHAMs.Find(MaSP);
                 db.SANPHAMs.Remove(model);
                 db.SaveChanges();
 
-
-
                 var path = Server.MapPath(PICTURE_PATH);
                 System.IO.File.Delete(path + model.MaSP);
-
-
 
                 scope.Complete();
                 return RedirectToAction("Index");

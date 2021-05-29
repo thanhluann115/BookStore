@@ -318,9 +318,10 @@
     <Content Include="Views\SANPHAMs\Create.cshtml" />
     <Content Include="Views\SANPHAMs\Delete.cshtml" />
     <Content Include="Views\SANPHAMs\Details.cshtml" />
-    <Content Include="Views\SANPHAMs\Edit.cshtml" />
+    <Content Include="Views\SANPHAMs\Edit2.cshtml" />
     <Content Include="Views\SANPHAMs\Index.cshtml" />
     <Content Include="Views\SANPHAMs\Index2.cshtml" />
+    <Content Include="Views\SANPHAMs\Edit.cshtml" />
     <None Include="Views\Shared\bookstore.cshtml" />
     <Content Include="style.css" />
     <Content Include="Web.config" />
