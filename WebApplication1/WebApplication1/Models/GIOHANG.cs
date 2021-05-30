@@ -17,16 +17,14 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GIOHANG()
         {
-            this.DONHANGs = new HashSet<DONHANG>();
             this.CHITIETGIOHANGs = new HashSet<CHITIETGIOHANG>();
         }
     
-        public string MAGH { get; set; }
+        public int id { get; set; }
         public string SOLUONG { get; set; }
+        public int TongTien { get; set; }
         public string GhiChuDatHang { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONHANG> DONHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETGIOHANG> CHITIETGIOHANGs { get; set; }
     }

@@ -151,14 +151,14 @@
             <div class="single-product">
                 <div class="product-f-image">
                     <a href="@Url.Action("Details", new { sANPHAM.MaSP})">
-                        <img src="@Url.Action("Picture","Products", new { sANPHAM.MaSP})" width="1950px" height="1300px" alt="Demo picture">
+                        <img src="@Url.Action("Picture","SANPHAMs", new { sANPHAM.MaSP})" width="1950px" height="1300px" alt="Demo picture">
                     </a>
                     <div class="product-hover">
                         <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
                     </div>
                 </div>
 
-                <h2><a href="@Url.Action("Details",new { sANPHAM.MaSP})">@sANPHAM.TenSP</a></h2>
+                <h2><a href="@Url.Action("Details","SANPHAMs",new { sANPHAM.MaSP})">@sANPHAM.TenSP</a></h2>
 
                 <div class="product-carousel-price">
                     <p>@sANPHAM.Gia VNĐ</p>

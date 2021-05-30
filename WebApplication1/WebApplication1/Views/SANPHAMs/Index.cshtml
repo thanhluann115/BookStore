@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.MaSP)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.TenSP)
         </th>
         <th>
@@ -45,6 +48,9 @@
 @foreach (var item in Model) {
 <tr>
     <td>
+        @Html.DisplayFor(modelItem => item.MaSP)
+    </td>
+    <td>
         @Html.DisplayFor(modelItem => item.TenSP)
     </td>
     <td>
@@ -72,9 +78,9 @@
         <img src="@Url.Action("picture", new { item.MaSP})" />
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.MaSP }) |
-        @Html.ActionLink("Details", "Details", new { id = item.MaSP }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
+        @Html.ActionLink("Edit", "Edit", new { item.MaSP }) |
+        @Html.ActionLink("Details", "Details", new { item.MaSP }) |
+        @Html.ActionLink("Delete", "Delete", new { item.MaSP })
     </td>
 </tr>
 }
