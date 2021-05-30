@@ -36,13 +36,16 @@ namespace WebApplication1.Controllers
         // GET: SANPHAMs/Details/5
         public ActionResult Details(int MaSP)
         {
-           
-            var model = db.SANPHAMs.Find(MaSP);
-            if (model == null)
+            if (MaSP == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
-            return View(model);
+            SANPHAM sANPHAM = db.SANPHAMs.Find(MaSP);
+            if (sANPHAM == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(sANPHAM);
         }
 
         // GET: SANPHAMs/Create
@@ -90,7 +93,7 @@ namespace WebApplication1.Controllers
         private void ValidateProduct(SANPHAM model)
         {
             if (model.Gia < 0)
-                ModelState.AddModelError("Price", "Price is less than Zero");
+                ModelState.AddModelError("Gia", "Price is less than Zero");
         }
 
         // GET: SANPHAMs/Edit/5

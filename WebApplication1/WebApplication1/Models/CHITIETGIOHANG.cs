@@ -14,9 +14,11 @@ namespace WebApplication1.Models
     
     public partial class CHITIETGIOHANG
     {
-        public string MaGH { get; set; }
+        public int id { get; set; }
+        public int MaGH { get; set; }
         public int MaSP { get; set; }
         public string SoLuong { get; set; }
+        public Nullable<int> Gia { get; set; }
     
         public virtual GIOHANG GIOHANG { get; set; }
         public virtual SANPHAM SANPHAM { get; set; }

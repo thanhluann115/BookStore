@@ -66,16 +66,15 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CT25Team15.dbo.CHITIETGIOHANG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CHITIETGIOHANG">
           <Key>
-            <PropertyRef Name="MaGH" />
-            <PropertyRef Name="MaSP" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="MaGH" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaGH" Type="int" Nullable="false" />
           <Property Name="MaSP" Type="int" Nullable="false" />
           <Property Name="SoLuong" Type="varchar" MaxLength="10" />
+          <Property Name="Gia" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CT25Team15.dbo.CHITIETHOADON' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -116,10 +115,11 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
         </EntityType>
         <EntityType Name="GIOHANG">
           <Key>
-            <PropertyRef Name="MAGH" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="MAGH" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SOLUONG" Type="varchar" MaxLength="10" />
+          <Property Name="TongTien" Type="int" Nullable="false" />
           <Property Name="GhiChuDatHang" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="HOADON">
@@ -186,7 +186,7 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GIOHANG">
-              <PropertyRef Name="MAGH" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="CHITIETGIOHANG">
               <PropertyRef Name="MaGH" />
@@ -285,18 +285,6 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_DONHANG_GIOHANG">
-          <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="1" />
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GIOHANG">
-              <PropertyRef Name="MAGH" />
-            </Principal>
-            <Dependent Role="DONHANG">
-              <PropertyRef Name="MAGH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_DONHANG_KHACHHANG">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
@@ -328,19 +316,13 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHITIETGIOHANG" EntityType="Self.CHITIETGIOHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONHANG" EntityType="Self.DONHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GIOHANG" EntityType="Self.GIOHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CHITIETGIOHANG" EntityType="Self.CHITIETGIOHANG" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CHITIETGIOHANG].[MaGH] AS [MaGH], 
-    [CHITIETGIOHANG].[MaSP] AS [MaSP], 
-    [CHITIETGIOHANG].[SoLuong] AS [SoLuong]
-    FROM [dbo].[CHITIETGIOHANG] AS [CHITIETGIOHANG]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [CHITIETHOADON].[MaHD] AS [MaHD], 
@@ -392,10 +374,6 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="fk_DONHANG_GIOHANG" Association="Self.fk_DONHANG_GIOHANG">
-            <End Role="GIOHANG" EntitySet="GIOHANG" />
-            <End Role="DONHANG" EntitySet="DONHANG" />
           </AssociationSet>
           <AssociationSet Name="fk_DONHANG_KHACHHANG" Association="Self.fk_DONHANG_KHACHHANG">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
@@ -470,6 +448,18 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
+        <EntityType Name="CHITIETGIOHANG">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaGH" Type="Int32" Nullable="false" />
+          <Property Name="MaSP" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Gia" Type="Int32" />
+          <NavigationProperty Name="GIOHANG" Relationship="Self.fk_CHITIETGIOHANG_GIOHANG" FromRole="CHITIETGIOHANG" ToRole="GIOHANG" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.fk_CHITIETGIOHANG_SANPHAM" FromRole="CHITIETGIOHANG" ToRole="SANPHAM" />
+        </EntityType>
         <EntityType Name="DONHANG">
           <Key>
             <PropertyRef Name="MADH" />
@@ -483,17 +473,16 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <Property Name="SOTIEN" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <Property Name="SOLUONG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="NGAYMUAHANG" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="GIOHANG" Relationship="Self.fk_DONHANG_GIOHANG" FromRole="DONHANG" ToRole="GIOHANG" />
           <NavigationProperty Name="KHACHHANG" Relationship="Self.fk_DONHANG_KHACHHANG" FromRole="DONHANG" ToRole="KHACHHANG" />
         </EntityType>
         <EntityType Name="GIOHANG">
           <Key>
-            <PropertyRef Name="MAGH" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="MAGH" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SOLUONG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TongTien" Type="Int32" Nullable="false" />
           <Property Name="GhiChuDatHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DONHANGs" Relationship="Self.fk_DONHANG_GIOHANG" FromRole="GIOHANG" ToRole="DONHANG" />
           <NavigationProperty Name="CHITIETGIOHANGs" Relationship="Self.fk_CHITIETGIOHANG_GIOHANG" FromRole="GIOHANG" ToRole="CHITIETGIOHANG" />
         </EntityType>
         <EntityType Name="HOADON">
@@ -550,17 +539,6 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="CHITIETGIOHANG">
-          <Key>
-            <PropertyRef Name="MaGH" />
-            <PropertyRef Name="MaSP" />
-          </Key>
-          <Property Name="MaGH" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="MaSP" Type="Int32" Nullable="false" />
-          <Property Name="SoLuong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="GIOHANG" Relationship="Self.fk_CHITIETGIOHANG_GIOHANG" FromRole="CHITIETGIOHANG" ToRole="GIOHANG" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.fk_CHITIETGIOHANG_SANPHAM" FromRole="CHITIETGIOHANG" ToRole="SANPHAM" />
-        </EntityType>
         <EntityType Name="CHITIETHOADON">
           <Key>
             <PropertyRef Name="MaHD" />
@@ -611,15 +589,27 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_DONHANG_GIOHANG">
+        <Association Name="fk_CHITIETGIOHANG_GIOHANG">
           <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="1" />
-          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="GIOHANG">
-              <PropertyRef Name="MAGH" />
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="DONHANG">
-              <PropertyRef Name="MAGH" />
+            <Dependent Role="CHITIETGIOHANG">
+              <PropertyRef Name="MaGH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CHITIETGIOHANG_SANPHAM">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="CHITIETGIOHANG">
+              <PropertyRef Name="MaSP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -632,18 +622,6 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
             </Principal>
             <Dependent Role="DONHANG">
               <PropertyRef Name="MAKH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_CHITIETGIOHANG_GIOHANG">
-          <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="1" />
-          <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GIOHANG">
-              <PropertyRef Name="MAGH" />
-            </Principal>
-            <Dependent Role="CHITIETGIOHANG">
-              <PropertyRef Name="MaGH" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -668,18 +646,6 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
             </Principal>
             <Dependent Role="CHITIETHOADON">
               <PropertyRef Name="MaHD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_CHITIETGIOHANG_SANPHAM">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
-          <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="MaSP" />
-            </Principal>
-            <Dependent Role="CHITIETGIOHANG">
-              <PropertyRef Name="MaSP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -717,13 +683,13 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="CHITIETGIOHANGs" EntityType="Self.CHITIETGIOHANG" />
           <EntitySet Name="DONHANGs" EntityType="Self.DONHANG" />
           <EntitySet Name="GIOHANGs" EntityType="Self.GIOHANG" />
           <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
           <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
           <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="CHITIETGIOHANGs" EntityType="Self.CHITIETGIOHANG" />
           <EntitySet Name="CHITIETHOADONs" EntityType="Self.CHITIETHOADON" />
           <EntitySet Name="DANHMUCSANPHAMs" EntityType="Self.DANHMUCSANPHAM" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -734,17 +700,17 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="fk_DONHANG_GIOHANG" Association="Self.fk_DONHANG_GIOHANG">
+          <AssociationSet Name="fk_CHITIETGIOHANG_GIOHANG" Association="Self.fk_CHITIETGIOHANG_GIOHANG">
             <End Role="GIOHANG" EntitySet="GIOHANGs" />
-            <End Role="DONHANG" EntitySet="DONHANGs" />
+            <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CHITIETGIOHANG_SANPHAM" Association="Self.fk_CHITIETGIOHANG_SANPHAM">
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANGs" />
           </AssociationSet>
           <AssociationSet Name="fk_DONHANG_KHACHHANG" Association="Self.fk_DONHANG_KHACHHANG">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="DONHANG" EntitySet="DONHANGs" />
-          </AssociationSet>
-          <AssociationSet Name="fk_CHITIETGIOHANG_GIOHANG" Association="Self.fk_CHITIETGIOHANG_GIOHANG">
-            <End Role="GIOHANG" EntitySet="GIOHANGs" />
-            <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANGs" />
           </AssociationSet>
           <AssociationSet Name="fk__HOADON_KHACHHANG" Association="Self.fk__HOADON_KHACHHANG">
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
@@ -753,10 +719,6 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <AssociationSet Name="fk_CHITIETHOADON_HOADON" Association="Self.fk_CHITIETHOADON_HOADON">
             <End Role="HOADON" EntitySet="HOADONs" />
             <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
-          </AssociationSet>
-          <AssociationSet Name="fk_CHITIETGIOHANG_SANPHAM" Association="Self.fk_CHITIETGIOHANG_SANPHAM">
-            <End Role="SANPHAM" EntitySet="SANPHAMs" />
-            <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANGs" />
           </AssociationSet>
           <AssociationSet Name="fk_CHITIETHOADON_SANPHAM" Association="Self.fk_CHITIETHOADON_SANPHAM">
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
@@ -832,6 +794,17 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETGIOHANGs">
+            <EntityTypeMapping TypeName="CT25Team15Model.CHITIETGIOHANG">
+              <MappingFragment StoreEntitySet="CHITIETGIOHANG">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaGH" ColumnName="MaGH" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DONHANGs">
             <EntityTypeMapping TypeName="CT25Team15Model.DONHANG">
               <MappingFragment StoreEntitySet="DONHANG">
@@ -850,8 +823,9 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <EntitySetMapping Name="GIOHANGs">
             <EntityTypeMapping TypeName="CT25Team15Model.GIOHANG">
               <MappingFragment StoreEntitySet="GIOHANG">
-                <ScalarProperty Name="MAGH" ColumnName="MAGH" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
                 <ScalarProperty Name="GhiChuDatHang" ColumnName="GhiChuDatHang" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -904,15 +878,6 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CHITIETGIOHANGs">
-            <EntityTypeMapping TypeName="CT25Team15Model.CHITIETGIOHANG">
-              <MappingFragment StoreEntitySet="CHITIETGIOHANG">
-                <ScalarProperty Name="MaGH" ColumnName="MaGH" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
