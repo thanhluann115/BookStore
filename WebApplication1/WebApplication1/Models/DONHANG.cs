@@ -24,7 +24,6 @@ namespace WebApplication1.Models
         public string SOLUONG { get; set; }
         public Nullable<System.DateTime> NGAYMUAHANG { get; set; }
     
-        public virtual GIOHANG GIOHANG { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
     }
 }
