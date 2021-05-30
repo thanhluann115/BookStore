@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WebApplication1.Models.CHITIETGIOHANG>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="product-content-right">
+    <div class="woocommerce">
+        <form method="post" action="#">
+            <table cellspacing="0" class="shop_table cart">
+                <thead>
+                    <tr>
+                        <th class="product-remove">&nbsp;</th>
+                        <th class="product-thumbnail">&nbsp;</th>
+                        <th class="product-name">Sản phẩm</th>
+                        <th class="product-price">Giá</th>
+                        <th class="product-quantity">Số lượng</th>
+                        <th class="product-subtotal">Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="cart_item">
+                            <td class="product-remove">
+                                <a title="Remove this item" class="remove" href="#">×</a>
+                            </td>
+
+                            <td class="product-thumbnail">
+                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="@Url.Action("Picture", "SANPHAMs", new { item.SANPHAM.MaSP })></a>
+                            </td>
+
+                            <td class="product-name">
+                                <a href="single-product.html">@item.SANPHAM.TenSP</a>
+                            </td>
+
+                            <td class="product-price">
+                                <span class="amount">@item.SANPHAM.Gia vnđ </span>
+                            </td>
+
+                            <td class="product-quantity">
+                                <div class="quantity buttons_added">
+                                    <input type="button" class="minus" value="-">
+                                    <input type="number" size="4" class="input-number" title="Qty" value="@item.SoLuong" min="0" step="1">
+                                    <input type="button" class="plus" value="+">
+                                </div>
+                            </td>
+
+                            <td class="product-subtotal">
+                                <span class="amount">@(item.SANPHAM.Gia) * @(item.SoLuong)vnđ </span>
+                            </td>
+                        </tr>
+                    }
+
+                    <tr>
+                        <td class="actions" colspan="6">
+                            <input type="submit" value="Update Cart" name="update_cart" class="button">
+                            <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <div class="cart-collaterals">
+
+
+            
+
+
+            <div class="cart_totals ">
+                <h2>Cart Totals</h2>
+
+                <table cellspacing="0">
+                    <tbody>
+                        <tr class="cart-subtotal">
+                            <th>Cart Subtotal</th>
+                            <td><span class="amount">£15.00</span></td>
+                        </tr>
+
+                        <tr class="shipping">
+                            <th>Shipping and Handling</th>
+                            <td>Free Shipping</td>
+                        </tr>
+
+                        <tr class="order-total">
+                            <th>Order Total</th>
+                            <td><strong><span class="amount">£15.00</span></strong> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+          
+
+
+        </div>
+    </div>
+</div>
