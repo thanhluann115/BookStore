@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -27,24 +28,36 @@ namespace WebApplication1.Controllers
             }
         }
 
-        // GET: ShoppingCart
+        // GET: ShoppingCart 
         public ActionResult Index()
+
         {
+            var hashtable = new Hashtable(); // cho phép tăng số lượng có cùng ID
+            foreach (var CHITIETGIOHANG in ShoppingCart)
+            {
+                if (hashtable[CHITIETGIOHANG.SANPHAM.MaSP] != null)
+                {
+                    (hashtable[CHITIETGIOHANG.SANPHAM.MaSP] as CHITIETGIOHANG).SoLuong += CHITIETGIOHANG.SoLuong;
+                }
+                else hashtable[CHITIETGIOHANG.SANPHAM.MaSP] = CHITIETGIOHANG;
+            }
+            ShoppingCart.Clear();
+            foreach (CHITIETGIOHANG cHITIETGIOHANG in hashtable.Values)
+                ShoppingCart.Add(cHITIETGIOHANG);
 
-            return View(ShoppingCart);
+                return View(ShoppingCart);
         }
-
-      
 
         // GET: ShoppingCart/Create
         [HttpPost]
+       
         public ActionResult Create(int MaSP, int SoLuong)
         {
-            var product = db.SANPHAMs.Find(MaSP);
+            var sANPHAM = db.SANPHAMs.Find(MaSP);
             ShoppingCart.Add(new CHITIETGIOHANG
             {
-                SANPHAM = product,
-                MaSP = MaSP
+                SANPHAM = sANPHAM,
+                SoLuong = SoLuong
 
             });
             return RedirectToAction("Index");
@@ -52,37 +65,35 @@ namespace WebApplication1.Controllers
        
 
         // GET: ShoppingCart/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpPost]
+        public ActionResult Edit(int [] SANPHAM_MaSP,int [] SoLuong)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CHITIETGIOHANG cHITIETGIOHANG = db.CHITIETGIOHANGs.Find(id);
-            if (cHITIETGIOHANG == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.MaGH = new SelectList(db.GIOHANGs, "id", "SOLUONG", cHITIETGIOHANG.MaGH);
-            ViewBag.MaSP = new SelectList(db.SANPHAMs, "MaSP", "TenSP", cHITIETGIOHANG.MaSP);
-            return View(cHITIETGIOHANG);
+            ShoppingCart.Clear();
+            if(SANPHAM_MaSP != null)
+                for(int i = 0; i < SANPHAM_MaSP.Length; i++)
+                    if(SoLuong[i]>0) 
+                {
+                    var SANPHAMs = db.SANPHAMs.Find(SANPHAM_MaSP[i]);
+                    ShoppingCart.Add(new CHITIETGIOHANG
+                    {
+                        SANPHAM = SANPHAMs,
+                        SoLuong = SoLuong[i]
+
+                    });
+                    Session["ShoppingCart"] = ShoppingCart;
+                }
+            return RedirectToAction("Index");
         }
 
        
 
         // GET: ShoppingCart/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CHITIETGIOHANG cHITIETGIOHANG = db.CHITIETGIOHANGs.Find(id);
-            if (cHITIETGIOHANG == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cHITIETGIOHANG);
+           
+            ShoppingCart.Clear();
+            Session["ShoppingCart"] = ShoppingCart;
+            return RedirectToAction("Index");
         }
 
 

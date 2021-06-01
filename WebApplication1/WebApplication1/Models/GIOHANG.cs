@@ -21,7 +21,7 @@ namespace WebApplication1.Models
         }
     
         public int id { get; set; }
-        public string SOLUONG { get; set; }
+        public int SoLuong { get; set; }
         public int TongTien { get; set; }
         public string GhiChuDatHang { get; set; }
     

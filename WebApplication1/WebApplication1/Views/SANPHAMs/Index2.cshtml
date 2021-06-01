@@ -144,7 +144,10 @@
                         <img src="@Url.Action("Picture","SANPHAMs", new { sANPHAM.MaSP})" width="1950px" height="1300px" alt="Demo picture">
                     </a>
                     <div class="product-hover">
-                        <a href="@Url.Action("")" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
+                        <a href="@Url.Action("Index", "ShoppingCart")" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
+                       <div 
+                         class="product-hover"> <a href="@Url.Action("Details",new { sANPHAM.MaSP})" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
+                    </div>
                     </div>
                 </div>
 
