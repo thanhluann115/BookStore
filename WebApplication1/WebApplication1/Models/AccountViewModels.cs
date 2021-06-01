@@ -56,6 +56,9 @@ namespace WebApplication1.Models
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
+        [StringLength(30, ErrorMessage = "Mật khẩu quá 30 ký tự")]
+        [MinLength(5, ErrorMessage = "Mật khẩu ít hơn 5 kí tự")]
+        
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
