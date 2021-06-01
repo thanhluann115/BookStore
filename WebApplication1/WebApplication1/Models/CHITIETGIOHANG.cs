@@ -17,7 +17,7 @@ namespace WebApplication1.Models
         public int id { get; set; }
         public int MaGH { get; set; }
         public int MaSP { get; set; }
-        public string SoLuong { get; set; }
+        public int SoLuong { get; set; }
         public Nullable<int> Gia { get; set; }
     
         public virtual GIOHANG GIOHANG { get; set; }
