@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRoleUsersController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
+    <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SANPHAMsController.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Views\SANPHAMs\Index.cshtml" />
     <Content Include="Views\SANPHAMs\Index2.cshtml" />
     <Content Include="Views\SANPHAMs\Edit.cshtml" />
+    <Content Include="Views\DonHang\Create.cshtml" />
     <None Include="Views\Shared\bookstore.cshtml" />
     <Content Include="style.css" />
     <Content Include="Web.config" />
