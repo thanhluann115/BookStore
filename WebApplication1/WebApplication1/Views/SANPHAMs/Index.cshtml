@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<WebApplication1.Models.SANPHAM>
 
 @{
+
+
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>DANH SÁCH SẢN PHẨM </h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,34 +14,35 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MaSP)
+            Mã Sản Phẩm 
+        </th>
+        <th class="col-md-1">
+            Tên Sản Phẩm
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TenSP)
+           Tác Giả 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TacGia)
+            Năm Sản Xuất 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NamSX)
+           Nhà Sản Xuất
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NhaSX)
+            Loại Sản Phẩm
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LoaiSP)
+            Giá Tiền
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Gia)
+           Ngày Thêm
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Noidung)
+        <th  class="col-md-3">
+            Nội Dung
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayThem)
-        </th>
-        <th>
-            Picture
+
+        <th class="col-md-2">
+            Hình Ảnh
         </th>
 
         <th></th>
@@ -51,10 +54,10 @@
         @Html.DisplayFor(modelItem => item.MaSP)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.TenSP)
+        <a href="@Url.Action("Details" ,new {item.MaSP})  target="_blank"> @Html.DisplayFor(modelItem => item.TenSP)</a>
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.TacGia)
+        @Html.DisplayFor(modelItem => item.TacGia) 
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.NamSX)
@@ -65,22 +68,30 @@
     <td>
         @Html.DisplayFor(modelItem => item.LoaiSP)
     </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Gia)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Noidung)
+    <td class="col-md-1">
+        @Html.DisplayFor(modelItem => item.Gia) VND
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.NgayThem)
     </td>
+    <td class="col-md-3">
+        @if (item.Noidung != null && item.Noidung.Length > 100)
+                {
+                     @item.Noidung.Substring(0, 100)
+                }
+        else
+    {
+        @item.Noidung
+    }
+    </td>
+
     <td>
-        <img src="@Url.Action("picture", new { item.MaSP})" />
+        <img class="col-md-10" src="@Url.Action("picture", new { item.MaSP})" width="37px" height="40px" />
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { item.MaSP }) |
-        @Html.ActionLink("Details", "Details", new {  item.MaSP }) |
-        @Html.ActionLink("Delete", "Delete", new {  item.MaSP })
+        <button> @Html.ActionLink("Edit", "Edit", new { item.MaSP }) </button>
+        <button>@Html.ActionLink("Details", "Details", new { item.MaSP })</button>
+        <button>@Html.ActionLink("Delete", "Delete", new { item.MaSP })  </button>
     </td>
 </tr>
 }

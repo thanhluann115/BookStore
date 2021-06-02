@@ -97,10 +97,10 @@ namespace WebApplication1.Controllers
         }
 
         // GET: SANPHAMs/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int MaSP)
         {
             
-            var model = db.SANPHAMs.Find(id);
+            var model = db.SANPHAMs.Find(MaSP);
             if (model == null)
             {
                 return HttpNotFound();
