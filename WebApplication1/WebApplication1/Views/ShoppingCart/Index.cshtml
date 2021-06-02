@@ -16,7 +16,6 @@
         <table cellspacing="0" class="shop_table cart">
             <thead>
                 <tr>
-
                     <th class="product-thumbnail">Hình ảnh </th>
                     <th class="product-name"> Tên Sản phẩm</th>
                     <th class="product-quantity">Số lượng</th>
@@ -28,23 +27,51 @@
                 @foreach (var item in Model)
                 {
                     CartSubtotal += item.SANPHAM.Gia.Value * item.SoLuong;
-                    <tr class="cart_item">
-                        <td class="product-thumbnail">
-                            <a href="single-product.html">
-                                <img width="150" height="158" alt="poster_1_up" class="shop_thumbnail"
+                <tr class="cart_item">
+
+                    <td class="product-thumbnail">
+                        <a href="single-product.html">
+                            <img width="150" height="158" alt="poster_1_up" class="shop_thumbnail"
+                                 src="@Url.Action("Picture", "SANPHAMs", new { item.SANPHAM.MaSP })" arl="">
+                        </a>
+                    </td>
                                      src="@Url.Action("Picture", "SANPHAMs", new { item.SANPHAM.MaSP })" arl="">
                             </a>
                         </td>
-
-                        <td class="product-name">
-                            <a href="@Url.Action("Details", "SANPHAMs", new { item.SANPHAM.MaSP })">@item.SANPHAM.TenSP</a>
+                                     src="@Url.Action("Picture", "SANPHAMs", new { item.SANPHAM.MaSP })" arl="">
+                            </a>
+                    <td class="product-quantity">
+                        <div class="quantity buttons_added">
+                            @Html.Hidden("SANPHAM_MaSP", item.SANPHAM.MaSP)
+                            <input type="button" class="minus" value="-">
+                            <input type="number" size="4" title="SốLượng" name="SoLuong" value="@item.SoLuong" min="0" max="10">
+                            <input type="button" class="plus" name="SoLuong" value="+">
+                        </div>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount">@item.SANPHAM.Gia vnđ </span>
+                    </td>
+                                <input type="button" class="plus" name="SoLuong" value="+">
+                            </div>
                         </td>
 
-                        <td class="product-quantity">
-                            <div class="quantity buttons_added">
-                                @Html.Hidden("SANPHAM_MaSP", item.SANPHAM.MaSP)
-                                <input type="button" class="minus" value="-">
-                                <input type="number" size="4" title="SốLượng" name="SoLuong" value="@item.SoLuong" min="0" max="10">
+                        <td class="product-price">
+                            <span class="amount">@item.SANPHAM.Gia vnđ </span>
+                        </td>
+                                <input type="button" class="plus" name="SoLuong" value="+">
+                            </div>
+                        </td>
+
+                        <td class="product-price">
+                            <span class="amount">@item.SANPHAM.Gia vnđ </span>
+                        </td>
+                                <input type="button" class="plus" name="SoLuong" value="+">
+                            </div>
+                        </td>
+
+                        <td class="product-price">
+                            <span class="amount">@item.SANPHAM.Gia vnđ </span>
+                        </td>
                                 <input type="button" class="plus" name="SoLuong" value="+">
                             </div>
                         </td>
@@ -53,12 +80,13 @@
                             <span class="amount">@item.SANPHAM.Gia vnđ </span>
                         </td>
 
+                   
 
 
-                        <td class="product-subtotal">
-                            <span class="amount">@(item.SANPHAM.Gia * item.SoLuong)vnđ </span>
-                        </td>
-                    </tr>
+                    <td class="product-subtotal">
+                        <span class="amount">@(item.SANPHAM.Gia * item.SoLuong)vnđ </span>
+                    </td>
+                </tr>
                 }
 
                 <tr>
